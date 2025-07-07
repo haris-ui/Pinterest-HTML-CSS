@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Pinterest</title>
+    <link rel="stylesheet" href="pinterest-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Page-specific styles */
+        .blog-header {
+            background-color: var(--light-gray);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            margin-top: 70px;
+        }
+        
+        .blog-header h1 {
+            color: var(--black);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .blog-header p {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--secondary-color);
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-gap: var(--spacing-lg);
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .blog-card {
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-normal);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .blog-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-normal);
+        }
+        
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+        
+        .blog-content {
+            padding: var(--spacing-lg);
+        }
+        
+        .blog-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--black);
+        }
+        
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+        
+        .blog-meta i {
+            margin-right: var(--spacing-xs);
+        }
+        
+        .blog-meta span {
+            margin-right: var(--spacing-md);
+        }
+        
+        .blog-excerpt {
+            color: var(--dark-gray);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .blog-tag {
+            background-color: var(--light-gray);
+            color: var(--secondary-color);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-pill);
+            font-size: 0.8rem;
+        }
+        
+        .featured-post {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (min-width: 768px) {
+            .featured-post {
+                flex-direction: row;
+            }
+            
+            .featured-post .blog-image {
+                width: 50%;
+                height: 350px;
+            }
+            
+            .featured-post .blog-content {
+                width: 50%;
+            }
+        }
+        
+        .newsletter-section {
+            background-color: var(--light-gray);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: var(--spacing-lg) auto 0;
+            display: flex;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: var(--spacing-md);
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-md) 0 0 var(--radius-md);
+            font-size: 1rem;
+        }
+        
+        .newsletter-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0 var(--spacing-lg);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+        }
+        
+        .newsletter-button:hover {
+            background-color: var(--primary-hover);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Pinterest_Logo.svg/2560px-Pinterest_Logo.svg.png" alt="Pinterest Logo">
+            </div>
+            <nav class="nav">
+                <div class="nav-item"><a href="welcome.html">Home</a></div>
+                <div class="nav-item"><a href="nothing.html">Watch</a></div>
+                <div class="nav-item"><a href="explore.html">Explore</a></div>
+                <div class="nav-item"><a href="contact.html">Contact us</a></div>
+                <div class="nav-item"><a href="business.html">Business</a></div>
+                <div class="nav-item active"><a href="blogl.html">Blog</a></div>
+                <div class="nav-item"><a href="login.html" class="btn btn-secondary btn-sm">Login</a></div>
+                <div class="nav-item"><a href="login.html" class="btn btn-primary btn-sm">Sign Up</a></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Header -->
+    <section class="blog-header">
+        <div class="container">
+            <h1>Pinterest Blog</h1>
+            <p>Discover the latest trends, tips, and inspiration from the Pinterest community.</p>
+        </div>
+    </section>
+
+    <!-- Blog Posts -->
+    <section class="container">
+        <div class="blog-grid">
+            <!-- Featured Post -->
+            <div class="blog-card featured-post">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Featured Blog Post">
+                </div>
+                <div class="blog-content">
+                    <h2 class="blog-title">How Pinterest is Revolutionizing Visual Discovery</h2>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> June 15, 2024</span>
+                        <span><i class="far fa-user"></i> Pinterest Team</span>
+                    </div>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Featured</span>
+                        <span class="blog-tag">Technology</span>
+                        <span class="blog-tag">Design</span>
+                    </div>
+                    <p class="blog-excerpt">Discover how Pinterest's visual discovery engine is changing the way people find and save ideas. From AI-powered recommendations to innovative search features, we're making it easier than ever to find inspiration for your next project.</p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+            
+            <!-- Regular Posts -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Blog Post">
+                </div>
+                <div class="blog-content">
+                    <h3 class="blog-title">10 Home Decor Trends for 2024</h3>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> June 10, 2024</span>
+                        <span><i class="far fa-user"></i> Sarah Johnson</span>
+                    </div>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Home Decor</span>
+                        <span class="blog-tag">Trends</span>
+                    </div>
+                    <p class="blog-excerpt">From sustainable materials to bold colors, discover the top home decor trends that are dominating Pinterest boards this year.</p>
+                    <a href="#" class="btn btn-secondary">Read More</a>
+                </div>
+            </div>
+            
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80" alt="Blog Post">
+                </div>
+                <div class="blog-content">
+                    <h3 class="blog-title">5 Easy Summer Recipes to Try Now</h3>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> June 5, 2024</span>
+                        <span><i class="far fa-user"></i> Chef Michael</span>
+                    </div>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Food</span>
+                        <span class="blog-tag">Recipes</span>
+                    </div>
+                    <p class="blog-excerpt">Beat the heat with these refreshing and easy-to-make summer recipes that are perfect for any occasion.</p>
+                    <a href="#" class="btn btn-secondary">Read More</a>
+                </div>
+            </div>
+            
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Blog Post">
+                </div>
+                <div class="blog-content">
+                    <h3 class="blog-title">Fashion Forward: Summer Style Guide</h3>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> May 28, 2024</span>
+                        <span><i class="far fa-user"></i> Emma Style</span>
+                    </div>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Fashion</span>
+                        <span class="blog-tag">Summer</span>
+                    </div>
+                    <p class="blog-excerpt">Stay on trend this summer with our comprehensive style guide featuring the hottest looks and must-have accessories.</p>
+                    <a href="#" class="btn btn-secondary">Read More</a>
+                </div>
+            </div>
+            
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80" alt="Blog Post">
+                </div>
+                <div class="blog-content">
+                    <h3 class="blog-title">Top Travel Destinations for 2024</h3>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> May 20, 2024</span>
+                        <span><i class="far fa-user"></i> Travel Team</span>
+                    </div>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Travel</span>
+                        <span class="blog-tag">Adventure</span>
+                    </div>
+                    <p class="blog-excerpt">From hidden gems to popular hotspots, explore our curated list of the most Pinterest-worthy travel destinations for this year.</p>
+                    <a href="#" class="btn btn-secondary">Read More</a>
+                </div>
+            </div>
+            
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1220&q=80" alt="Blog Post">
+                </div>
+                <div class="blog-content">
+                    <h3 class="blog-title">DIY Projects to Transform Your Space</h3>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> May 15, 2024</span>
+                        <span><i class="far fa-user"></i> Crafty Creators</span>
+                    </div>
+                    <div class="blog-tags">
+                        <span class="blog-tag">DIY</span>
+                        <span class="blog-tag">Crafts</span>
+                    </div>
+                    <p class="blog-excerpt">Get inspired with these creative DIY projects that will help you transform your living space without breaking the bank.</p>
+                    <a href="#" class="btn btn-secondary">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Stay updated with the latest trends, tips, and inspiration delivered straight to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">Pinterest</h3>
+                <p>Your visual discovery engine for finding ideas for all your projects and interests.</p>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="welcome.html">Home</a></li>
+                    <li class="footer-link"><a href="explore.html">Explore</a></li>
+                    <li class="footer-link"><a href="business.html">Business</a></li>
+                    <li class="footer-link"><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Connect</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li class="footer-link"><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li class="footer-link"><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li class="footer-link"><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2024 Pinterest. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- JavaScript for Dark Mode Toggle -->
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Change icon based on mode
+            const icon = darkModeToggle.querySelector('i');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>

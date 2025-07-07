@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Sign Up - Pinterest</title>
+    <link rel="stylesheet" href="pinterest-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Page-specific styles */
+        .auth-container {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--light-gray);
+            transition: background-color var(--transition-normal);
+        }
+        
+        .auth-image {
+            flex: 1;
+            background-image: url('https://images.unsplash.com/photo-1615184697985-c9bde1b07da7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: none;
+        }
+        
+        .auth-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            padding: var(--spacing-xl);
+            text-align: center;
+        }
+        
+        .auth-overlay h2 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--white);
+        }
+        
+        .auth-overlay p {
+            font-size: 1.2rem;
+            max-width: 500px;
+        }
+        
+        .auth-form-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: var(--spacing-xl);
+        }
+        
+        .auth-form-wrapper {
+            width: 100%;
+            max-width: 450px;
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+            animation: slideUp var(--transition-normal) ease-out;
+        }
+        
+        .auth-logo {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .auth-logo img {
+            height: 60px;
+        }
+        
+        .auth-title {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            color: var(--black);
+            font-size: var(--font-size-xl);
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: var(--spacing-md);
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--secondary-color);
+            transition: all var(--transition-fast);
+            position: relative;
+        }
+        
+        .auth-tab.active {
+            color: var(--primary-color);
+        }
+        
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+            animation: slideRight var(--transition-normal) ease-out;
+        }
+        
+        @keyframes slideRight {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        .auth-form {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity var(--transition-normal), transform var(--transition-normal);
+        }
+        
+        .auth-form.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 500;
+            color: var(--dark-gray);
+            transition: color var(--transition-normal);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 1px solid var(--medium-gray);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-md);
+            background-color: var(--white);
+            color: var(--black);
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-normal), color var(--transition-normal);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(230, 0, 35, 0.25);
+            outline: none;
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .form-check-input {
+            margin-right: var(--spacing-xs);
+            cursor: pointer;
+        }
+        
+        .form-check-label {
+            cursor: pointer;
+            transition: color var(--transition-normal);
+        }
+        
+        .auth-btn {
+            width: 100%;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            transition: all var(--transition-normal);
+        }
+        
+        .auth-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .forgot-password {
+            text-align: right;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .forgot-password a {
+            color: var(--secondary-color);
+            font-size: var(--font-size-sm);
+            transition: color var(--transition-fast);
+        }
+        
+        .forgot-password a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        
+        .social-login {
+            margin-top: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .social-login-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            color: var(--secondary-color);
+            transition: color var(--transition-normal);
+        }
+        
+        .social-login-title::before,
+        .social-login-title::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid var(--medium-gray);
+            transition: border-color var(--transition-normal);
+        }
+        
+        .social-login-title span {
+            padding: 0 var(--spacing-md);
+        }
+        
+        .social-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .social-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            background-color: var(--white);
+            border: 1px solid var(--medium-gray);
+            color: var(--dark-gray);
+            transition: all var(--transition-fast);
+            cursor: pointer;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .social-btn i {
+            margin-right: var(--spacing-xs);
+        }
+        
+        .social-btn.facebook {
+            color: #4267B2;
+            border-color: #4267B2;
+        }
+        
+        .social-btn.google {
+            color: #DB4437;
+            border-color: #DB4437;
+        }
+        
+        .social-btn.twitter {
+            color: #1DA1F2;
+            border-color: #1DA1F2;
+        }
+        
+        /* .auth-footer {
+            text-align: center;
+            margin предприятий: var(--spacing-lg);
+            color: var(--secondary-color);
+            font-size: var(--font-size-sm);
+            transition: color var(--transition-normal);
+        } */
+        
+        .auth-footer a {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Dark mode styles */
+        .dark-mode .auth-container {
+            background-color: var(--dark-gray);
+        }
+        
+        .dark-mode .auth-form-wrapper {
+            background-color: var(--black);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .dark-mode .auth-title {
+            color: var(--white);
+        }
+        
+        .dark-mode .form-label {
+            color: var(--light-gray);
+        }
+        
+        .dark-mode .form-control {
+            background-color: var(--dark-gray);
+            border-color: var(--secondary-color);
+            color: var(--white);
+        }
+        
+        .dark-mode .social-btn {
+            background-color: var(--dark-gray);
+        }
+        
+        .dark-mode .social-login-title::before,
+        .dark-mode .social-login-title::after {
+            border-color: var(--secondary-color);
+        }
+        
+        /* Responsive styles */
+        @media (min-width: 768px) {
+            .auth-image {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .auth-form-wrapper {
+                padding: var(--spacing-lg);
+            }
+            
+            .social-buttons {
+                flex-direction: column;
+            }
+        }
+        
+        .error {
+            color: red;
+            margin-top: var(--spacing-md);
+            text-align: center;
+            font-size: var(--font-size-sm);
+        }
+    </style>
+</head>
+<body>
+    <!-- Authentication Container -->
+    <div class="auth-container">
+        <!-- Left Side Image -->
+        <div class="auth-image">
+            <div class="auth-overlay">
+                <h2>Get inspired and share your ideas</h2>
+                <p>Join millions of people discovering and saving creative ideas every day.</p>
+            </div>
+        </div>
+        
+        <!-- Right Side Form -->
+        <div class="auth-form-container">
+            <div class="auth-form-wrapper">
+                <div class="auth-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Pinterest_Logo.svg/2560px-Pinterest_Logo.svg.png" alt="Pinterest Logo">
+                </div>
+                
+                <h2 class="auth-title">Welcome to Pinterest</h2>
+                
+                <!-- Auth Tabs -->
+                <div class="auth-tabs">
+                    <div class="auth-tab active" id="loginTab">Login</div>
+                    <div class="auth-tab" id="signupTab">Sign Up</div>
+                </div>
+                
+                <!-- Login Form -->
+                <form class="auth-form active" id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail" class="form-label">Email Address</label>
+                        <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input type="checkbox" id="rememberMe" class="form-check-input">
+                        <label for="rememberMe" class="form-check-label">Remember me</label>
+                    </div>
+                    
+                    <div class="forgot-password">
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    
+                    <div id="loginError" class="error"></div>
+                    
+                    <button type="submit" class="btn btn-primary auth-btn">Login</button>
+                    
+                    <div class="social-login">
+                        <div class="social-login-title">
+                            <span>Or login with</span>
+                        </div>
+                        
+                        <div class="social-buttons">
+                            <button type="button" class="social-btn facebook">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </button>
+                            
+                            <button type="button" class="social-btn google">
+                                <i class="fab fa-google"></i> Google
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                
+                <!-- Sign Up Form -->
+                <form class="auth-form" id="signupForm">
+                    <div class="form-group">
+                        <label for="signupName" class="form-label">Full Name</label>
+                        <input type="text" id="signupName" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupEmail" class="form-label">Email Address</label>
+                        <input type="email" id="signupEmail" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupPassword" class="form-label">Password</label>
+                        <input type="password" id="signupPassword" class="form-control" placeholder="Create a password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" class="form-control" placeholder="Confirm your password" required>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input type="checkbox" id="agreeTerms" class="form-check-input" required>
+                        <label for="agreeTerms" class="form-check-label">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                    </div>
+                    
+                    <div id="signupError" class="error"></div>
+                    
+                    <button type="submit" class="btn btn-primary auth-btn">Create Account</button>
+                    
+                    <div class="social-login">
+                        <div class="social-login-title">
+                            <span>Or sign up with</span>
+                        </div>
+                        
+                        <div class="social-buttons">
+                            <button type="button" class="social-btn facebook">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </button>
+                            
+                            <button type="button" class="social-btn google">
+                                <i class="fab fa-google"></i> Google
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="auth-footer">
+                    <p>By continuing, you agree to Pinterest's <a href="#">Terms of Service</a> and acknowledge you've read our <a href="#">Privacy Policy</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Tab Switching
+        const loginTab = document.getElementById('loginTab');
+        const signupTab = document.getElementById('signupTab');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        
+        loginTab.addEventListener('click', () => {
+            loginTab.classList.add('active');
+            signupTab.classList.remove('active');
+            loginForm.classList.add('active');
+            signupForm.classList.remove('active');
+        });
+        
+        signupTab.addEventListener('click', () => {
+            signupTab.classList.add('active');
+            loginTab.classList.remove('active');
+            signupForm.classList.add('active');
+            loginForm.classList.remove('active');
+        });
+        
+        // Login Form Submission
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            const errorDiv = document.getElementById('loginError');
+            
+            if (!email || !password) {
+                errorDiv.textContent = 'Please enter both email and password.';
+            } else {
+                errorDiv.textContent = '';
+                window.location.href = 'welcome.html';
+            }
+        });
+        
+        // Sign Up Form Submission
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value.trim();
+            const confirmPassword = document.getElementById('signupConfirmPassword').value.trim();
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+            const errorDiv = document.getElementById('signupError');
+            
+            if (!name || !email || !password || !confirmPassword) {
+                errorDiv.textContent = 'Please fill all required fields.';
+            } else if (password !== confirmPassword) {
+                errorDiv.textContent = 'Passwords do not match.';
+            } else if (!agreeTerms) {
+                errorDiv.textContent = 'You must agree to the terms of service.';
+            } else {
+                errorDiv.textContent = '';
+                window.location.href = 'welcome.html';
+            }
+        });
+        
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            const icon = darkModeToggle.querySelector('i');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>

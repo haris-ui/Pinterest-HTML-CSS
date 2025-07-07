@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore - Pinterest</title>
+    <link rel="stylesheet" href="pinterest-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Page-specific styles */
+        .explore-header {
+            background-color: var(--light-gray);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            margin-top: 70px;
+        }
+        
+        .explore-header h1 {
+            color: var(--black);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .explore-header p {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--secondary-color);
+        }
+        
+        .categories-section {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: var(--spacing-md);
+            padding: var(--spacing-md);
+        }
+        
+        .category-card {
+            height: 150px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-normal);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: var(--white);
+            padding: var(--spacing-md);
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .inspiration-section {
+            background-color: var(--white);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+        
+        .inspiration-image {
+            max-width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            margin: var(--spacing-lg) 0;
+        }
+        
+        .how-to-section {
+            background-color: var(--light-gray);
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .step-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: var(--radius-circle);
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .community-section {
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            margin-top: var(--spacing-lg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Pinterest_Logo.svg/2560px-Pinterest_Logo.svg.png" alt="Pinterest Logo">
+            </div>
+            <nav class="nav">
+                <div class="nav-item"><a href="welcome.html">Home</a></div>
+                <div class="nav-item"><a href="nothing.html">Watch</a></div>
+                <div class="nav-item active"><a href="explore.html">Explore</a></div>
+                <div class="nav-item"><a href="contact.html">Contact us</a></div>
+                <div class="nav-item"><a href="business.html">Business</a></div>
+                <div class="nav-item"><a href="blogl.html">Blog</a></div>
+                <div class="nav-item"><a href="login.html" class="btn btn-secondary btn-sm">Login</a></div>
+                <div class="nav-item"><a href="login.html" class="btn btn-primary btn-sm">Sign Up</a></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Explore Header -->
+    <section class="explore-header">
+        <div class="container">
+            <h1>Explore Endless Inspiration</h1>
+            <p>Discover trending ideas, creative projects, and beautiful content curated just for you.</p>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="text-center mb-4">Popular Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <img src="dog.jpg" alt="Pets">
+                    <div class="category-overlay">Pets</div>
+                </div>
+                <div class="category-card">
+                    <img src="grass.jpg" alt="Nature">
+                    <div class="category-overlay">Nature</div>
+                </div>
+                <div class="category-card">
+                    <img src="girl.jpg" alt="Fashion">
+                    <div class="category-overlay">Fashion</div>
+                </div>
+                <div class="category-card">
+                    <img src="o shape.jpg" alt="Art">
+                    <div class="category-overlay">Art</div>
+                </div>
+                <div class="category-card">
+                    <img src="sui dhaga.jpg" alt="DIY">
+                    <div class="category-overlay">DIY</div>
+                </div>
+                <div class="category-card">
+                    <img src="b360aefcded25044c9f367c78aea4b07.jpg" alt="Travel">
+                    <div class="category-overlay">Travel</div>
+                </div>
+                <div class="category-card">
+                    <img src="home and decor.jpg" alt="Home Decor">
+                    <div class="category-overlay">Home Decor</div>
+                </div>
+                <div class="category-card">
+                    <img src="bamda.jpg" alt="Music">
+                    <div class="category-overlay">Music</div>
+                </div>
+                <div class="category-card">
+                    <img src="quote.jpg" alt="Quotes">
+                    <div class="category-overlay">Quotes</div>
+                </div>
+                <div class="category-card">
+                    <img src="tattos.jpg" alt="Tattoos">
+                    <div class="category-overlay">Tattoos</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inspiration Section -->
+    <section class="inspiration-section">
+        <div class="container">
+            <h2>Discover Your Next Big Idea</h2>
+            <p class="mb-4">Each picture on the Explore page tells a story, offering a glimpse into the creative minds of Pinterest users worldwide. Are you planning a wedding, redecorating your home, or searching for fashion ideas? With every scroll, you'll uncover trending themes and popular pins that align with your tastes and interests. This is your go-to space to turn dreams into reality!</p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuLOF37OSrY5tlZDv7jR6JYqMzcSf1mfrU3w&s" alt="Fashion inspiration" class="inspiration-image">
+            <h3 class="mt-4">Tailored Inspiration Just for You</h3>
+            <p>Each picture on the Explore page tells a story, offering a glimpse into the creative minds of Pinterest users worldwide. Are you planning a wedding, redecorating your home, or searching for fashion ideas? With every scroll, you'll uncover trending themes and popular pins that align with your tastes and interests. This is your go-to space to turn dreams into reality!</p>
+        </div>
+    </section>
+
+    <!-- How To Section -->
+    <section class="how-to-section">
+        <div class="container">
+            <h2 class="text-center">How to Use the Explore Page</h2>
+            <p class="text-center mb-4">Using the Explore page is simple and fun. Here's how to get the most out of it:</p>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Browse</h3>
+                    <p>Scroll through the images and discover content that catches your eye.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Save</h3>
+                    <p>Click on pins you like and save them to your personal boards for later.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Share</h3>
+                    <p>Share ideas with friends and collaborate on projects together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community-section">
+        <div class="container">
+            <h2>Join Our Creative Community</h2>
+            <p>Pinterest is more than just a platform—it's a community of creators, dreamers, and doers. By exploring the content here, you're joining millions of others who share your love for beauty, creativity, and innovation. So go ahead, explore the possibilities, and let your imagination run wild!</p>
+            <a href="login.html" class="btn btn-primary btn-lg cta-button">Join Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">Pinterest</h3>
+                <p>Your visual discovery engine for finding ideas for all your projects and interests.</p>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="welcome.html">Home</a></li>
+                    <li class="footer-link"><a href="business.html">Business</a></li>
+                    <li class="footer-link"><a href="blogl.html">Blog</a></li>
+                    <li class="footer-link"><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Connect</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li class="footer-link"><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li class="footer-link"><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li class="footer-link"><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2024 Pinterest. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- JavaScript for Dark Mode Toggle -->
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Change icon based on mode
+            const icon = darkModeToggle.querySelector('i');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>

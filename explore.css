@@ -1,0 +1,188 @@
+
+* {
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+main 
+{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    font-family: 'Arial', sans-serif;
+    padding: 20px 0;
+}
+.first-div {
+    width: 90%;
+    max-width: 1500px;
+    text-align: center;
+    padding: 40px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+.first-div h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+
+.normal-heading h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: darkslategray;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+    position: relative;
+    display: inline-block;
+}
+
+.normal-heading h2::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 4px;
+    background-color: crimson;
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+
+.boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.first-row, .second-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+.img, .second-img {
+    width: 230px;
+    height: 130px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.first-row .img:first-child {
+    background-image: url(dog.jpg);
+}
+.first-row .img:nth-child(2) {
+    background-image: url(grass.jpg);
+}
+.first-row .img:nth-child(3) {
+    background-image: url(girl.jpg);
+}
+.first-row .img:nth-child(4) {
+    background-image: url(o\ shape.jpg);
+}
+.first-row .img:last-child {
+    background-image: url(sui\ dhaga.jpg);
+}
+
+.second-row .second-img:first-child {
+    background-image: url(b360aefcded25044c9f367c78aea4b07.jpg);
+}
+.second-row .second-img:nth-child(2) {
+    background-image: url(home\ and\ decor.jpg);
+}
+.second-row .second-img:nth-child(3) {
+    background-image: url(bamda.jpg);
+}
+.second-row .second-img:nth-child(4) {
+    background-image: url(quote.jpg);
+}
+.second-row .second-img:last-child {
+    background-image: url(tattos.jpg);
+}
+body {
+    /* font-family: 'Arial', sans-serif; */
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+h3, h4 {
+    text-align: center;
+    font-size: 2.5em;
+    color: darkslategray;
+    margin-top: 30px;
+}
+
+p, p1 {
+    font-size: 1.2em;
+    line-height: 1.6;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 800px;
+    color: lightcoral;
+    padding: 0 20px;
+}
+
+font {
+    color: black;
+}
+
+img {
+    display: block;
+    margin: 20px auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+a {
+    display: inline-block;
+    background-color: lightcoral;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: lightcoral;
+}
+
+@media (max-width: 768px) {
+    h3, h4 {
+        font-size: 2em;
+    }
+
+    p, p1 {
+        font-size: 1em;
+        padding: 0 15px;
+    }
+}

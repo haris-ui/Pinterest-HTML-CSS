@@ -1,0 +1,232 @@
+*{
+    margin :0%;
+    padding :0%;
+    box-sizing:border-box ;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* font-weight: bold; */
+}
+
+
+html,body{
+    background-image: url('Brown Aesthetic Vision Board Autumn Photo Collage Desktop Wallpaper.png');
+    height: 100%;
+    width: 100%;
+}
+#header{
+    align-items: center;
+    display: flex;
+    position: fixed;
+    height: 10%;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    justify-content: space-around;
+}
+#fakeheader{
+    height: 10%;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}
+#main{
+    height: 100%;
+    width: 100%;
+}
+#page1
+{
+    height: 90%;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}
+#sides{
+    height: 93%;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#left
+{
+    margin: 10px;
+    height: 100%;
+    width: 50%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#box1
+{
+    border-radius: 15px;
+    height: 90%;
+    width: 100%;
+    background-color:wheat;
+    box-shadow: 1px black ;
+}
+#about{
+    margin: 10px;
+}
+#para
+{
+    margin: 10px;
+    text-align: center ;
+    font-size: larger;
+}
+#para0
+{
+
+    margin: 10px;
+    text-align: center ;
+    font-size: larger;
+}
+#right
+{
+    margin: 10px;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#box2
+{
+    height: 90%;
+    width: 100%;
+    background-color: #ffffff;
+
+}
+#box3
+{
+    background-color: rgb(255, 255, 255);
+}
+#pic
+{
+    display: flex;
+}
+#pic img
+{
+    margin-top: 9px;
+    border-radius: 10px;
+    height:30%;
+    width: 95%;
+}
+#pic0 img
+{
+    border-radius: 10px;
+    height: 30%;
+    width: 95%;
+}
+#pic1 img
+{
+    /* margin-right:; */
+    margin-top: 2000px;
+    border-radius: 10px;
+    height: 120%;
+    width: 100%;
+}
+#heading
+{
+    color: white;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 8%;
+    background-color: rgb(203, 0, 0);
+}
+#page2
+{
+    height: 90%;
+    width: 100%;
+    background-color:rgb(192, 168, 30);
+    display: flex;
+}
+#half1
+{
+    height: 100%;
+    width: 50%;
+    background-color: rgb(255, 255, 255);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+#half2
+ {
+    font-size: xx-large;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    color: rgb(170, 17, 17);
+    padding: 20px;
+    text-align: center;
+}
+#head00
+ {
+    margin-bottom: 20px;
+}
+#half2 p {
+    margin-top: 0;
+    line-height: 1.5;
+    font-size: 16px;
+}
+#b3 {
+    color: white;
+    padding: 7px;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: rgb(255, 0, 0);
+    border-radius: 20px;
+    width: 115px;
+}
+#b3:hover {
+    background-color: rgb(154, 0, 0);
+}
+.elements{
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    
+}
+.elements:hover{
+    color: rgb(173, 0, 0);
+}
+#logo
+{
+    height: 70%;
+    
+}
+#logo img{
+    height: 100%;
+    object-fit: cover;
+}
+.button
+{
+    padding: 5px;
+    text-align: center;
+    width: 5%;
+    border-radius: 20px;
+}
+#b1
+{
+    background-color: rgb(255, 40, 40);
+    color: white;
+}
+#b1:hover
+{
+   background-color: rgb(216, 0, 0); 
+}
+#b2
+{
+    background-color: rgb(215, 215, 215);
+}
+#b2:hover
+{
+   background-color: rgb(203, 203, 203); 
+}
+#b3
+{
+    border-color: aqua;
+}

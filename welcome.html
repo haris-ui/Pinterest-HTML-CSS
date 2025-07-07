@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Pinterest</title>
+    <link rel="stylesheet" href="pinterest-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Page-specific styles */
+        .hero-section {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: var(--spacing-xl);
+            z-index: 1;
+            animation: fadeIn var(--transition-normal) ease-in;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--white);
+        }
+        
+        .hero-text {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .features-section {
+            padding: var(--spacing-xxl) 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            background-color: var(--white);
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .feature-title {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .feature-text {
+            color: var(--secondary-color);
+        }
+        
+        .categories-section {
+            padding: var(--spacing-xxl) 0;
+            background-color: var(--light-gray);
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .category-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            height: 250px;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-normal);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .category-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: var(--spacing-md);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: var(--white);
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .category-count {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .trending-section {
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .trending-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-auto-rows: 10px;
+            grid-gap: var(--spacing-md);
+        }
+        
+        .trending-pin {
+            break-inside: avoid;
+            margin-bottom: var(--spacing-md);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            position: relative;
+            transition: transform var(--transition-normal);
+        }
+        
+        .trending-pin:hover {
+            transform: translateY(-5px);
+        }
+        
+        .trending-pin-1 {
+            grid-row-end: span 45;
+        }
+        
+        .trending-pin-2 {
+            grid-row-end: span 35;
+        }
+        
+        .trending-pin-3 {
+            grid-row-end: span 30;
+        }
+        
+        .trending-pin-4 {
+            grid-row-end: span 40;
+        }
+        
+        .trending-pin-5 {
+            grid-row-end: span 38;
+        }
+        
+        .trending-pin-6 {
+            grid-row-end: span 32;
+        }
+        
+        .trending-pin-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .trending-pin-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: var(--spacing-md);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: var(--white);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+        
+        .trending-pin:hover .trending-pin-overlay {
+            opacity: 1;
+        }
+        
+        .cta-section {
+            padding: var(--spacing-xxl) 0;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--white);
+        }
+        
+        .cta-text {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-text {
+                font-size: 1rem;
+            }
+            
+            .features-grid,
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Pinterest_Logo.svg/2560px-Pinterest_Logo.svg.png" alt="Pinterest Logo">
+            </div>
+            <nav class="nav">
+                <div class="nav-item active"><a href="welcome.html">Home</a></div>
+                <div class="nav-item"><a href="nothing.html">Watch</a></div>
+                <div class="nav-item"><a href="explore.html">Explore</a></div>
+                <div class="nav-item"><a href="contact.html">Contact us</a></div>
+                <div class="nav-item"><a href="business.html">Business</a></div>
+                <div class="nav-item"><a href="blogl.html">Blog</a></div>
+                <div class="nav-item"><a href="login.html" class="btn btn-secondary btn-sm">Login</a></div>
+                <div class="nav-item"><a href="login.html" class="btn btn-primary btn-sm">Sign Up</a></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Get Your Next Creative Idea</h1>
+            <p class="hero-text">Discover recipes, home ideas, style inspiration and other ideas to try.</p>
+            <div class="hero-buttons">
+                <a href="login.html" class="btn btn-primary btn-lg">Sign Up</a>
+                <a href="explore.html" class="btn btn-secondary btn-lg">Explore</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Pinterest?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="feature-title">Endless Inspiration</h3>
+                    <p class="feature-text">Discover millions of ideas for every part of your life, from recipes to home decor, fashion, and more.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
+                    <h3 class="feature-title">Save What You Love</h3>
+                    <p class="feature-text">Create boards to organize your favorite ideas and save pins for later reference.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Share Your Ideas</h3>
+                    <p class="feature-text">Connect with friends and share your favorite discoveries with the Pinterest community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title">Explore Popular Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Home Decor" class="category-img">
+                    <div class="category-overlay">
+                        <h3 class="category-title">Home Decor</h3>
+                        <p class="category-count">1.2M+ ideas</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Food & Recipes" class="category-img">
+                    <div class="category-overlay">
+                        <h3 class="category-title">Food & Recipes</h3>
+                        <p class="category-count">2.5M+ ideas</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Fashion" class="category-img">
+                    <div class="category-overlay">
+                        <h3 class="category-title">Fashion</h3>
+                        <p class="category-count">3.7M+ ideas</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Travel" class="category-img">
+                    <div class="category-overlay">
+                        <h3 class="category-title">Travel</h3>
+                        <p class="category-count">1.8M+ ideas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Section -->
+    <section class="trending-section">
+        <div class="container">
+            <h2 class="section-title">Trending Now</h2>
+            <div class="trending-grid">
+                <div class="trending-pin trending-pin-1">
+                    <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Trending Pin" class="trending-pin-img">
+                    <div class="trending-pin-overlay">
+                        <h3>Modern Living Room Design</h3>
+                        <p>Saved 5.2k times this week</p>
+                    </div>
+                </div>
+                
+                <div class="trending-pin trending-pin-2">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="Trending Pin" class="trending-pin-img">
+                    <div class="trending-pin-overlay">
+                        <h3>Summer Cocktail Recipes</h3>
+                        <p>Saved 3.8k times this week</p>
+                    </div>
+                </div>
+  
+                <div class="trending-pin trending-pin-5">
+                    <img src="https://images.unsplash.com/photo-1607083206968-13611e3d76db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1215&q=80" alt="Trending Pin" class="trending-pin-img">
+                    <div class="trending-pin-overlay">
+                        <h3>DIY Home Projects</h3>
+                        <p>Saved 3.5k times this week</p>
+                    </div>
+                </div>
+                
+                <div class="trending-pin trending-pin-6">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Trending Pin" class="trending-pin-img">
+                    <div class="trending-pin-overlay">
+                        <h3>Healthy Breakfast Ideas</h3>
+                        <p>Saved 2.7k times this week</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Get Inspired?</h2>
+                <p class="cta-text">Join millions of people discovering and saving creative ideas every day.</p>
+                <a href="login.html" class="btn btn-secondary btn-lg">Create Your Account</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">Pinterest</h3>
+                <p>Your visual discovery engine for finding ideas for all your projects and interests.</p>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="welcome.html">Home</a></li>
+                    <li class="footer-link"><a href="explore.html">Explore</a></li>
+                    <li class="footer-link"><a href="blogl.html">Blog</a></li>
+                    <li class="footer-link"><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Connect</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li class="footer-link"><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li class="footer-link"><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li class="footer-link"><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2024 Pinterest. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- JavaScript for Dark Mode Toggle -->
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Change icon based on mode
+            const icon = darkModeToggle.querySelector('i');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>

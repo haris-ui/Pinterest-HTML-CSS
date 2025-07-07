@@ -1,0 +1,91 @@
+        body
+         {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin: 0;
+            padding: 0;
+            /* background-color: #f9f9f9; */
+            background-color: wheat;
+            color: #333;
+        }
+        header 
+        {
+            /* width: 100%; */
+            background-color: #d30000;
+            color: rgb(234, 62, 62);
+            /* padding: 20px; */
+            /* text-align: center; */
+            justify-content: space-between;
+            display: flex;
+        }
+        #fh
+        {
+            padding: 30px;
+        height: 10%;
+        width: 100%;
+        background-color: white;
+        }
+        #hhhh
+        {
+         align-items: center;
+        display: flex;
+        position: fixed;
+        height: 10%;
+        width: 100%;
+        background-color: rgb(255, 255, 255);
+        justify-content: space-around;
+        }
+        header h1
+        {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        nav 
+        {
+            margin-top: 10px;
+        }
+        nav a 
+        {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+        nav a:hover 
+        {
+            text-decoration: underline;
+        }
+        .container 
+        {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .blog-post 
+        {
+            margin-bottom: 30px;
+        }
+        .blog-post h2 
+        {
+            font-size: 1.8em;
+            color: #d35400;
+        }
+        .blog-post p 
+        {
+            line-height: 1.6;
+        }
+        .blog-post img 
+        {
+            max-width: 100%;
+            border-radius: 18px;
+        }
+        footer 
+        {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        

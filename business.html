@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business - Pinterest</title>
+    <link rel="stylesheet" href="pinterest-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Page-specific styles */
+        .business-header {
+            background-color: var(--light-gray);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            margin-top: 70px;
+        }
+        
+        .business-header h1 {
+            color: var(--black);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .business-header p {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--secondary-color);
+        }
+        
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: var(--spacing-xxl) 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--white);
+        }
+        
+        .hero-text {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .stats-section {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--white);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: var(--spacing-lg);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .stat-label {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+        
+        .features-section {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--light-gray);
+        }
+        
+        .features-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+        
+        .features-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .features-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .features-image img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .feature-list {
+            margin-top: var(--spacing-lg);
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .feature-icon {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-right: var(--spacing-md);
+        }
+        
+        .feature-text h3 {
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .testimonials-section {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--white);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .testimonial-card {
+            background-color: var(--light-gray);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-normal);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            position: relative;
+        }
+        
+        .testimonial-content::before {
+            content: '\201C';
+            font-size: 4rem;
+            position: absolute;
+            left: -20px;
+            top: -20px;
+            color: var(--primary-color);
+            opacity: 0.2;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-circle);
+            overflow: hidden;
+            margin-right: var(--spacing-md);
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 0;
+        }
+        
+        .author-info p {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+        
+        .pricing-section {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--light-gray);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .pricing-card {
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-normal);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .pricing-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .pricing-popular .pricing-header {
+            background-color: var(--black);
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: var(--spacing-md) 0;
+        }
+        
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        
+        .pricing-features {
+            padding: var(--spacing-lg);
+        }
+        
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .pricing-feature i {
+            color: var(--success);
+            margin-right: var(--spacing-md);
+        }
+        
+        .pricing-cta {
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .cta-section {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-buttons {
+            margin-top: var(--spacing-lg);
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Pinterest_Logo.svg/2560px-Pinterest_Logo.svg.png" alt="Pinterest Logo">
+            </div>
+            <nav class="nav">
+                <div class="nav-item"><a href="welcome.html">Home</a></div>
+                <div class="nav-item"><a href="nothing.html">Watch</a></div>
+                <div class="nav-item"><a href="explore.html">Explore</a></div>
+                <div class="nav-item"><a href="contact.html">Contact us</a></div>
+                <div class="nav-item active"><a href="business.html">Business</a></div>
+                <div class="nav-item"><a href="blogl.html">Blog</a></div>
+                <div class="nav-item"><a href="login.html" class="btn btn-secondary btn-sm">Login</a></div>
+                <div class="nav-item"><a href="login.html" class="btn btn-primary btn-sm">Sign Up</a></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Business Header -->
+    <section class="business-header">
+        <div class="container">
+            <h1>Pinterest for Business</h1>
+            <p>Reach over 400 million people looking for ideas to try and buy</p>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h2 class="hero-title">Grow Your Business with Pinterest</h2>
+            <p class="hero-text">Pinterest is a visual discovery engine where people find inspiration for their lives. From home decor to fashion, food to travel, Pinterest helps people discover and do what they love.</p>
+            <a href="login.html" class="btn btn-primary btn-lg">Create Business Account</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="text-center mb-4">Why Pinterest for Business?</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">400M+</div>
+                    <div class="stat-label">Monthly Active Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Users Make Purchase Decisions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2x</div>
+                    <div class="stat-label">Higher Return on Ad Spend</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5x</div>
+                    <div class="stat-label">More Conversions than Other Platforms</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-container">
+                <div class="features-content">
+                    <h2>Powerful Business Tools</h2>
+                    <p>Pinterest offers a suite of business tools designed to help you reach your target audience, drive traffic to your website, and increase sales.</p>
+                    
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Analytics Dashboard</h3>
+                                <p>Track your performance with detailed analytics on impressions, engagement, and audience demographics.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Targeted Advertising</h3>
+                                <p>Reach the right audience with Pinterest's powerful targeting options based on interests, demographics, and behaviors.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Shopping Features</h3>
+                                <p>Turn your pins into shoppable products with product tags, catalogs, and shopping ads.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="features-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Pinterest Business Tools">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="text-center mb-4">Success Stories</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Pinterest has been a game-changer for our business. We've seen a 300% increase in website traffic and a significant boost in sales since we started using Pinterest for Business."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Johnson">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Marketing Director, Home Decor Co.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The targeting capabilities on Pinterest are incredible. We're able to reach customers who are actively looking for products like ours, resulting in higher conversion rates than any other platform."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>CEO, Fashion Brand</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"As a small business owner, I was skeptical about investing in another social platform. Pinterest has proven to be worth every penny, driving qualified traffic that actually converts."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily Rodriguez">
+                        </div>
+                        <div class="author-info">
+                            <h4>Emily Rodriguez</h4>
+                            <p>Owner, Handmade Crafts Shop</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <h2 class="text-center">Advertising Plans</h2>
+            <p class="text-center mb-4">Choose the right advertising solution for your business needs</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Starter</h3>
+                        <div class="pricing-price">$10 <span>/day minimum</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Standard Pin Ads</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Basic Targeting Options</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Performance Reporting</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Email Support</span>
+                        </div>
+                    </div>
+                    <div class="pricing-cta">
+                        <a href="#" class="btn btn-secondary">Get Started</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card pricing-popular">
+                    <div class="pricing-header">
+                        <h3>Professional</h3>
+                        <div class="pricing-price">$25 <span>/day minimum</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>All Starter Features</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Video Pin Ads</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced Targeting</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Priority Support</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Shopping Catalog Integration</span>
+                        </div>
+                    </div>
+                    <div class="pricing-cta">
+                        <a href="#" class="btn btn-primary">Get Started</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <div class="pricing-price">Custom <span>pricing</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>All Professional Features</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Dedicated Account Manager</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Custom Reporting</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>API Access</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Strategic Consultation</span>
+                        </div>
+                    </div>
+                    <div class="pricing-cta">
+                        <a href="#" class="btn btn-secondary">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Grow Your Business?</h2>
+                <p>Join millions of businesses using Pinterest to connect with customers and drive meaningful results.</p>
+                <div class="cta-buttons">
+                    <a href="login.html" class="btn btn-secondary btn-lg">Create Account</a>
+                    <a href="contact.html" class="btn btn-primary btn-lg">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">Pinterest</h3>
+                <p>Your visual discovery engine for finding ideas for all your projects and interests.</p>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="welcome.html">Home</a></li>
+                    <li class="footer-link"><a href="explore.html">Explore</a></li>
+                    <li class="footer-link"><a href="blogl.html">Blog</a></li>
+                    <li class="footer-link"><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Connect</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li class="footer-link"><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li class="footer-link"><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li class="footer-link"><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2024 Pinterest. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- JavaScript for Dark Mode Toggle -->
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Change icon based on mode
+            const icon = darkModeToggle.querySelector('i');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>
